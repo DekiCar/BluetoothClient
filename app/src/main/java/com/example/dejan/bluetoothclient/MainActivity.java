@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         if(connection != null) {
             connection.disconnect();
         }
-
+        super.onStop();
     }
 
     private void setEvents(){
