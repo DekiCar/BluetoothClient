@@ -5,4 +5,5 @@ package com.example.dejan.bluetoothclient;
  */
 
 public class hjghjhjh {
+
 }
