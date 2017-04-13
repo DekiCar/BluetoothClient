@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -25,10 +26,15 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.LogRecord;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import static java.lang.Thread.sleep;
 
@@ -65,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
     private int humidity;
 
     private String text;
+
+    private EditText input1;
+    private Button b1;
 
     private int mistake = 0;
 
@@ -133,6 +142,30 @@ public class MainActivity extends AppCompatActivity {
         humidityText = (TextView) findViewById(R.id.humidityText);
 
         fireButton = (Button) findViewById(R.id.fireButton);
+
+        input1 = (EditText) findViewById(R.id.input1);
+        b1 = (Button) findViewById(R.id.b1);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            URL url = new URL(input1.getText().toString());
+                            URLConnection connection = url.openConnection();
+                            connection.connect();
+                            mistake = 4;
+                            handler.sendEmptyMessage(0);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+            }
+        });
 
         setEvents();
 

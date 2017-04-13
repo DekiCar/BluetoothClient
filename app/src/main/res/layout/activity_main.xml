@@ -172,6 +172,16 @@
                     android:textSize ="30sp"/>
             </LinearLayout>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/input1"/>
+            <Button
+                android:text="konektuj se"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/b1"/>
+
         </LinearLayout>
 
     </ScrollView>
