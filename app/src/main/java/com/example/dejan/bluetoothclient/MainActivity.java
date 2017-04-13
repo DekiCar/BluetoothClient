@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         if(connection != null) {
             connection.disconnect();
         }
+        Toast.makeText(MainActivity.this, "Pikec", Toast.LENGTH_SHORT).show();
         super.onStop();
 
     }
